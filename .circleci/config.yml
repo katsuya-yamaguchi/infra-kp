@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: hasicorp/terraform:0.11.11
+
+    working_directory: ~/kp-infra
+
+    steps:
+     - checkout
+     - run:
+       name: "terraform init"
+       command: |
+         terraform init -input=false
+     - run:
+       name: "terraform plan"
+       command: |
+         terraform plan
