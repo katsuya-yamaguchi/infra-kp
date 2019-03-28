@@ -71,11 +71,19 @@ variable "subnet_database-b" {
 ####################
 # EC2
 ####################
-variable "instance_type" {
-  type = "map"
+variable "instance_type" { type = "map"
   default = {
     dev.instance_type = "t2.nano"
     prd.instance_type = "t2.nano"
   }
 }
 
+####################
+# SSH Key
+####################
+variable "ssh_key_path" {
+  default = {
+    dev.path = "./key-pair/web-01.pub"
+    pub.path = "./key-pair/web-01.pub"
+  }
+}
