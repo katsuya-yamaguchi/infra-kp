@@ -43,5 +43,5 @@ resource "aws_instance" "web-001" {
 
 resource "aws_key_pair" "auth" {
   key_name = "ssh-key"
-  public_key = "${file("${lookup(var.ssh_key_path, "${terraform.workspace}.path", "null")}")}"
+  public_key = "${file("${lookup(var.ssh_key_path, "${terraform.workspace}.path", "./ec2.tf")}")}"
 }
