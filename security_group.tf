@@ -41,3 +41,17 @@ resource "aws_security_group" "ssh_to_bastion" {
     cidr_blocks = ["10.10.10.0/24"]
   }
 }
+
+resource "aws_security_group" "alb" {
+  name = "alb"
+  description = "alb"
+  vpc_id = "${aws_vpc.kp-network.id}"
+
+  ingress {
+    from_port = 0
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
