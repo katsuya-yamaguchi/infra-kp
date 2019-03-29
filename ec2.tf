@@ -5,7 +5,8 @@ resource "aws_instance" "bastion" {
   subnet_id = "${aws_subnet.public-a.id}"
   vpc_security_group_ids = [
     "${aws_security_group.ssh.id}", 
-    "${aws_default_security_group.default.id}"
+    "${aws_default_security_group.default.id}",
+    "${aws_security_group.http.id}"
     ]
   key_name = "${aws_key_pair.auth.key_name}"
 
@@ -26,7 +27,8 @@ resource "aws_instance" "web-001" {
   subnet_id = "${aws_subnet.private-a.id}"
   vpc_security_group_ids = [
       "${aws_security_group.ssh_to_bastion.id}", 
-      "${aws_default_security_group.default.id}"
+      "${aws_default_security_group.default.id}",
+    "${aws_security_group.http.id}"
     ]
   key_name = "${aws_key_pair.auth.key_name}"
 

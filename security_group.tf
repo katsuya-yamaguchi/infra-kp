@@ -42,6 +42,20 @@ resource "aws_security_group" "ssh_to_bastion" {
   }
 }
 
+resource "aws_security_group" "http" {
+  name = "http"
+  description = "http"
+  vpc_id = "${aws_vpc.kp-network.id}"
+
+  ingress {
+    from_port = 0
+    to_port = 80
+    protocol = "tcp"
+    security_groups = ["${aws_security_group.alb.id}"]
+  }
+}
+
+
 resource "aws_security_group" "alb" {
   name = "alb"
   description = "alb"
