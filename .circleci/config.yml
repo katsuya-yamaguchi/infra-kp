@@ -8,7 +8,9 @@ jobs:
 
     steps:
      - checkout
-     - run:
+     - run: terraform workspace new dev
+     - run: terraform workspace select dev
+     - run: terraform init
         name: terraform init
         command: |
           terraform init -input=false
