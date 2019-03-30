@@ -69,6 +69,17 @@ variable "subnet_database-b" {
 }
 
 ####################
+# Route53
+####################
+variable "fqdn" {
+  type = "map"
+  default = {
+    dev.fqdn = "mini-schna.com"
+    prd.fqdn = "mini-schna.com"
+  }
+}
+
+####################
 # EC2
 ####################
 variable "instance_type" { type = "map"
