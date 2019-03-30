@@ -1,7 +1,7 @@
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name = "${aws_route53_record.ns.name}"
-    origin_id = "${aws_s3_bucket.cloudfront.id}"
+    origin_id   = "${aws_s3_bucket.cloudfront.id}"
   }
 
   enabled             = true
@@ -13,6 +13,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   #  bucket          = "mylogs.s3.amazonaws.com"
   #  prefix          = "myprefix"
   #}
+
 
   #aliases = ["mysite.example.com", "yoursite.example.com"]
 
@@ -34,16 +35,13 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     default_ttl            = 3600
     max_ttl                = 86400
   }
-
   price_class = "PriceClass_200"
-
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
       locations        = ["US", "CA", "GB", "DE"]
     }
   }
-
   viewer_certificate {
     cloudfront_default_certificate = true
   }
