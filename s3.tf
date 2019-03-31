@@ -1,4 +1,4 @@
 resource "aws_s3_bucket" "cloudfront" {
-  bucket = "static-contents"
-  acl    = "pulic-read"
+  bucket = "kp.static-constents"
+  acl    = "public-read"
 }
