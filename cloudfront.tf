@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name = "${aws_route53_record.ns.name}"
+    domain_name = "${aws_s3_bucket.cloudfront.bucket_regional_domain_name}"
     origin_id   = "${aws_s3_bucket.cloudfront.id}"
   }
 
@@ -18,8 +18,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   #aliases = ["mysite.example.com", "yoursite.example.com"]
 
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET"]
+    allowed_methods  = ["HEAD", "OPTIONS", "DELETE", "GET", "PATCH", "POST", "PUT"]
+    cached_methods   = ["HEAD", "GET"]
     target_origin_id = "${aws_s3_bucket.cloudfront.id}"
 
     forwarded_values {
