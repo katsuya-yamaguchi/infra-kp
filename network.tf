@@ -88,6 +88,15 @@ resource "aws_subnet" "database-b" {
   }
 }
 
+resource "aws_db_subnet_group" "main" {
+  name = "main"
+  subnet_ids = [
+    "${aws_subnet.database-a.id}",
+    "${aws_subnet.database-b.id}"
+  ]
+}
+
+
 ####################
 # Routing
 ####################

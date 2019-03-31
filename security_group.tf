@@ -55,6 +55,22 @@ resource "aws_security_group" "http" {
   }
 }
 
+resource "aws_security_group" "db" {
+  name = "db"
+  description = "db"
+  vpc_id = "${aws_vpc.kp-network.id}"
+
+  ingress {
+    from_port = 0
+    to_port = 5432
+    protocol = "tcp"
+    cidr_blocks = [
+      "${aws_subnet.private-a.cidr_block}",
+      "${aws_subnet.private-b.cidr_block}"
+    ]
+  }
+}
+
 resource "aws_security_group" "alb" {
   name        = "alb"
   description = "alb"

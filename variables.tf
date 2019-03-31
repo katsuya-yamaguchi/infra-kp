@@ -108,3 +108,11 @@ variable "ssh_key_path" {
     pub.path = "./key-pair/web-01.pub"
   }
 }
+
+####################
+# RDS
+####################
+variable "master-user" {}
+variable "master-pass" {}
+variable "slave-user" {}
+variable "slave-pass" {}
